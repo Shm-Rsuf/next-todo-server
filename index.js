@@ -3,6 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const todoRoutes = require("./routes/todo.route");
+
 /* VARIABLES */
 const port = process.env.PORT || 4000;
 // const uri = process.env.MONGO_URI;
@@ -22,6 +24,9 @@ app.use(
 app.get("/", (req, res) => {
   res.status(200).json({ message: "welcome to our todo application" });
 });
+
+/* BYPASS API */
+app.use("/todo", todoRoutes);
 
 /* CONNECT TO DATABASE */
 mongoose
